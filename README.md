@@ -92,3 +92,92 @@ If the article takes 30 minutes or longer to read:
 
 There aren't tests for this feature, so you'll have to rely on running the code
 in the browser to see if your implementation works!
+
+## Project Structure
+
+```
+src/
+├── components/
+│   ├── App.jsx          # Main application component (orchestrates all others)
+│   ├── Header.jsx       # Blog header with blog name
+│   ├── About.jsx        # Blog about section with logo and description
+│   ├── ArticleList.jsx  # Container for all articles
+│   └── Article.jsx      # Individual article component
+├── data/
+│   └── blog.js          # Blog data (name, image, about, posts)
+└── __tests__/
+    ├── App.test.jsx
+    ├── Header.test.jsx
+    ├── About.test.jsx
+    ├── ArticleList.test.jsx
+    └── Article.test.jsx
+```
+
+## Component Descriptions
+
+### App.jsx
+The main application component that orchestrates all child components. Imports blog data from `data/blog.js` and passes it down as props to `Header`, `About`, and `ArticleList` children.
+
+### Header.jsx
+Renders the blog header section with the blog name in an `<h1>`. Receives the blog name as a `name` prop.
+
+### About.jsx
+Renders the blog about section with a logo image and description. Receives `image` (logo path) and `about` (description text) as props. Uses a placeholder image as default if no image is provided.
+
+### ArticleList.jsx
+Renders a list of articles inside a `<main>` container. Receives `posts` (array of post objects) as a prop and maps each to an `Article` component.
+
+### Article.jsx
+Renders a single blog article with title, date, and preview. Receives `title`, `date`, and `preview` as props. Uses a default date of "January 1, 1970" if no date is provided.
+
+## Running the Project
+
+### Install Dependencies
+```bash
+npm install
+```
+
+### Run Tests
+```bash
+npm test
+```
+
+All tests should pass:
+- Header component tests (2 tests)
+- About component tests (4 tests)
+- ArticleList component tests (2 tests)
+- Article component tests (5 tests)
+- App component tests (1 test)
+
+### Start Development Server
+```bash
+npm run dev
+```
+
+Open http://localhost:5173 to view the blog site in your browser.
+
+### Build for Production
+```bash
+npm run build
+```
+
+## Component Hierarchy
+
+```
+App
+├── Header (receives name prop)
+├── About (receives image and about props)
+└── ArticleList (receives posts prop)
+    └── Article (receives title, date, preview props - has default date)
+```
+
+## Testing
+
+The project uses Vitest and Testing Library for unit testing. All components are tested for:
+- Correct element rendering
+- Prop-based content rendering
+- Default prop values
+- Component hierarchy
+
+Run `npm test` to execute all tests.
+
